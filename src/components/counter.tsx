@@ -1,3 +1,4 @@
+/*
 import React, {ChangeEvent, useEffect, useState} from "react";
 import s from './counter.module.css'
 import {Button} from "./Button";
@@ -24,16 +25,16 @@ export type CounterType = {
 export function Counter() {
     let dispatch = useDispatch()
    let counter = useSelector<AppRootStateType, CounterType>(state=> state.counter)
-    /*const {
+    /!*const {
         maxValue,
         minValue,
         counter,
         buttonClicked,
         previousMinValue,
         previousMaxValue
-    }:CounterType = useSelector((state) => state);*/
+    }:CounterType = useSelector((state) => state);*!/
 
-   /* let [maxValue, setMaxValue] = useState<number>(() => {
+   /!* let [maxValue, setMaxValue] = useState<number>(() => {
         const storedValue = localStorage.getItem('Max value');
         return storedValue ? +JSON.parse(storedValue) : 1;
     });
@@ -49,13 +50,13 @@ export function Counter() {
     })
     let [buttonClicked, setButtonClicked] = useState<boolean>(false)
     let [previousMinValue, setPreviousMinValue] = useState(0);
-    let [previousMaxValue, setPreviousMaxValue] = useState(0);*/
+    let [previousMaxValue, setPreviousMaxValue] = useState(0);*!/
 
-   /* useEffect(() => {
+   /!* useEffect(() => {
         localStorage.setItem('Min value', JSON.stringify(minValue))
         localStorage.setItem('Max value', JSON.stringify(maxValue))
         localStorage.setItem('Counter', JSON.stringify(counter))
-    }, [minValue, maxValue, counter])*/
+    }, [minValue, maxValue, counter])*!/
 
     const onChangeMax = (event: ChangeEvent<HTMLInputElement>) => {
         dispatch(onChangeMaxAC(event))
@@ -77,28 +78,31 @@ export function Counter() {
         <div className={s.wrapper}>
             <div>
                 <SetValues
-                  /*  maxValue={counter.maxValue}
+                  /!*  maxValue={counter.maxValue}
                     minValue={counter.minValue}
                     changeMax={onChangeMax}
                     changeMin={onChangeMin}
-                    setValue={setValue}*/
+                    setValue={setValue}*!/
 
                 />
             </div>
             <div>
                 <MainWindow
-                    /*counter={counter}
+                    /!*counter={counter}
                     maxValue={counter.maxValue}
                     minValue={counter.minValue}
                     changeCounter={changeCounter}
                     resetCounter={resetCounter}
                     buttonClicked={counter.buttonClicked}
                     previousMaxValue={counter.previousMaxValue}
-                    previousMinValue={counter.previousMinValue}*/
+                    previousMinValue={counter.previousMinValue}*!/
                 />
             </div>
 
 
         </div>
     )
-}
+}*/
+const x=null
+export default x
+
