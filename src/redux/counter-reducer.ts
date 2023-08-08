@@ -33,9 +33,10 @@ export const counterReducer = (state: InitialStateType = initialState, action: A
             };
         }
         case CHANGE_COUNTER:
+          //  debugger
             return {
                 ...state,
-                counter: state.counter < state.previousMaxValue ? state.counter + 1 : state.counter
+                counter: state.counter < state.previousMaxValue ? (state.counter + 1) : state.counter
             };
         case RESET_COUNTER: {
             return {...state, counter: state.previousMinValue};
@@ -43,8 +44,8 @@ export const counterReducer = (state: InitialStateType = initialState, action: A
         case SET_VALUE: {
             return {
                 ...state,
-                previousMaxValue: state.previousMaxValue,
-                previousMinValue: state.previousMinValue,
+                previousMaxValue: state.maxValue,
+                previousMinValue: state.minValue,
                 buttonClicked: true,
                 counter: state.minValue
             };
