@@ -3,10 +3,37 @@ import s from './counter.module.css'
 import {Button} from "./Button";
 import SetValues from "./SetValues";
 import MainWindow from "./MainWindow";
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootStateType} from "../redux/store";
+import {
+    changeCounterAC,
+    onChangeMaxAC,
+    onChangeMinAC,
+    resetCounterAC,
+    setValueAC
+} from "../redux/counter-reducer";
 
-
+export type CounterType = {
+    maxValue: number,
+    minValue: number,
+    counter: number,
+    buttonClicked: boolean,
+    previousMinValue: number,
+    previousMaxValue: number,
+ }
 export function Counter() {
-    let [maxValue, setMaxValue] = useState<number>(() => {
+    let dispatch = useDispatch()
+   let counter = useSelector<AppRootStateType, CounterType>(state=> state.counter)
+    /*const {
+        maxValue,
+        minValue,
+        counter,
+        buttonClicked,
+        previousMinValue,
+        previousMaxValue
+    }:CounterType = useSelector((state) => state);*/
+
+   /* let [maxValue, setMaxValue] = useState<number>(() => {
         const storedValue = localStorage.getItem('Max value');
         return storedValue ? +JSON.parse(storedValue) : 1;
     });
@@ -22,59 +49,52 @@ export function Counter() {
     })
     let [buttonClicked, setButtonClicked] = useState<boolean>(false)
     let [previousMinValue, setPreviousMinValue] = useState(0);
-    let [previousMaxValue, setPreviousMaxValue] = useState(0);
+    let [previousMaxValue, setPreviousMaxValue] = useState(0);*/
 
-    useEffect(() => {
+   /* useEffect(() => {
         localStorage.setItem('Min value', JSON.stringify(minValue))
         localStorage.setItem('Max value', JSON.stringify(maxValue))
         localStorage.setItem('Counter', JSON.stringify(counter))
-    }, [minValue, maxValue, counter])
+    }, [minValue, maxValue, counter])*/
 
     const onChangeMax = (event: ChangeEvent<HTMLInputElement>) => {
-        setMaxValue(Number(event.target.value))
-        setButtonClicked(false)
+        dispatch(onChangeMaxAC(event))
     }
     const onChangeMin = (event: ChangeEvent<HTMLInputElement>) => {
-        setMinValue(Number(event.target.value))
-        setButtonClicked(false)
+        dispatch(onChangeMinAC(event))
     }
     const changeCounter = () => {
-
-        if (counter < previousMaxValue)
-            setCounter(counter + 1)
+        dispatch(changeCounterAC())
     }
     const resetCounter = () => {
-        setCounter(previousMinValue);
+        dispatch(resetCounterAC())
     }
     const setValue = () => {
-        setPreviousMinValue(minValue)
-        setPreviousMaxValue(maxValue)
-        setButtonClicked(true)
-        setCounter(minValue)
+        dispatch(setValueAC())
 
     }
     return (
         <div className={s.wrapper}>
             <div>
                 <SetValues
-                    maxValue={maxValue}
-                    minValue={minValue}
+                  /*  maxValue={counter.maxValue}
+                    minValue={counter.minValue}
                     changeMax={onChangeMax}
                     changeMin={onChangeMin}
-                    setValue={setValue}
+                    setValue={setValue}*/
 
                 />
             </div>
             <div>
                 <MainWindow
-                    counter={counter}
-                    maxValue={maxValue}
-                    minValue={minValue}
+                    /*counter={counter}
+                    maxValue={counter.maxValue}
+                    minValue={counter.minValue}
                     changeCounter={changeCounter}
                     resetCounter={resetCounter}
-                    buttonClicked={buttonClicked}
-                    previousMaxValue={previousMaxValue}
-                    previousMinValue={previousMinValue}
+                    buttonClicked={counter.buttonClicked}
+                    previousMaxValue={counter.previousMaxValue}
+                    previousMinValue={counter.previousMinValue}*/
                 />
             </div>
 

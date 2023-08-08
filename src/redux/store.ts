@@ -1,4 +1,4 @@
-import {combineReducers, createStore} from 'redux';
+import {combineReducers, createStore, legacy_createStore} from 'redux';
 import {counterReducer} from "./counter-reducer";
 
 // объединяя reducer-ы с помощью combineReducers,
@@ -7,7 +7,7 @@ const rootReducer = combineReducers({
     counter: counterReducer
 })
 // непосредственно создаём store
-export const store = createStore(rootReducer);
+export const store = legacy_createStore(rootReducer);
 // определить автоматически тип всего объекта состояния
 export type AppRootStateType = ReturnType<typeof rootReducer>
 

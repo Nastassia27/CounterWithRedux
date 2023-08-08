@@ -1,8 +1,11 @@
 import React, {useState} from 'react';
 import s from "./counter.module.css";
 import {Button} from "./Button";
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootStateType} from "../redux/store";
+import {CounterType} from "./counter";
 
-type PropsType = {
+/*type PropsType = {
     counter: number
     maxValue: number
     minValue: number
@@ -11,10 +14,12 @@ type PropsType = {
     buttonClicked: boolean
     previousMaxValue: number
     previousMinValue: number
-}
-export const MainWindow = (props: PropsType) => {
+}*/
+export const MainWindow = () => {
+    let dispatch = useDispatch()
+    let counter = useSelector<AppRootStateType, CounterType>(state=> state.counter)
 const labelVariant = ()=>{
-    if(!props.buttonClicked && (props.minValue < 0 || props.maxValue < 0 || props.maxValue <= props.minValue)){
+    if(!counter.buttonClicked && (props.minValue < 0 || props.maxValue < 0 || props.maxValue <= props.minValue)){
         return <label className={s.incorrectNumber} htmlFor="counter">Incorrect value</label>
     } else if (!props.buttonClicked){
         return  <label className={s.firstMessage} htmlFor="counter">Enter values and press "Set"</label>

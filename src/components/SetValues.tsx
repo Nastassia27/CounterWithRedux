@@ -3,6 +3,7 @@ import s from "./counter.module.css";
 import {Button} from "./Button";
 import Input from "./Input";
 
+/*
 type PropsTypes = {
     maxValue: number
     minValue: number
@@ -10,8 +11,10 @@ type PropsTypes = {
     changeMin:(event: ChangeEvent<HTMLInputElement>)=>void
     setValue:()=>void
 }
+*/
 
-export const SetValues = (props: PropsTypes) => {
+export const SetValues = () => {
+
 
     return (
         <div className={s.counter}>
