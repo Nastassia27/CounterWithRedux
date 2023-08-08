@@ -2,6 +2,10 @@ import React, {ChangeEvent, useState} from 'react';
 import s from "./counter.module.css";
 import {Button} from "./Button";
 import Input from "./Input";
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootStateType} from "../redux/store";
+import {CounterType} from "./MainWindow";
+import {onChangeMaxAC, onChangeMinAC, setValueAC} from "../redux/counter-reducer";
 
 /*
 type PropsTypes = {
@@ -14,20 +18,39 @@ type PropsTypes = {
 */
 
 export const SetValues = () => {
+    let dispatch = useDispatch()
+    let {
+        minValue,
+        maxValue,
+        ...restProps
+    } = useSelector((state: AppRootStateType) => state.counterer)
 
 
+    const changeMax = (event: ChangeEvent<HTMLInputElement>) => {
+        dispatch(onChangeMaxAC(event))
+    }
+    const changeMin = (event: ChangeEvent<HTMLInputElement>) => {
+        dispatch(onChangeMinAC(event))
+    }
+    const setValue = () => {
+        dispatch(setValueAC())
+
+    }
     return (
         <div className={s.counter}>
             <div className={s.inputgroup}>
                 <label htmlFor="maxValue">Max Value</label>
-                <Input class={props.maxValue<0 || props.maxValue<=props.minValue ? s.inputError: ''} type={'number'} id={'maxValue'} value={props.maxValue} callback={props.changeMax}/>
+                <Input class={maxValue < 0 || maxValue <= minValue ? s.inputError : ''} type={'number'} id={'maxValue'}
+                       value={maxValue} callback={changeMax}/>
             </div>
             <div className={s.inputgroup}>
                 <label htmlFor="minValue">Min Value</label>
-                <Input class={props.minValue<0 || props.maxValue<=props.minValue ? s.inputError: ''} type={'number'} id={'minValue'} value={props.minValue} callback={props.changeMin}/>
+                <Input class={minValue < 0 || maxValue <= minValue ? s.inputError : ''} type={'number'} id={'minValue'}
+                       value={minValue} callback={changeMin}/>
             </div>
             <div className={s.buttons}>
-                <Button disabled={props.minValue<0 || props.maxValue<0 || props.maxValue<=props.minValue} className={s.click} title={'Set'} callBack={props.setValue}/>
+                <Button disabled={minValue < 0 || maxValue < 0 || maxValue <= minValue} className={s.click}
+                        title={'Set'} callBack={setValue}/>
             </div>
         </div>
     );
