@@ -23,7 +23,7 @@ export const SetValues = () => {
         minValue,
         maxValue,
         ...restProps
-    } = useSelector((state: AppRootStateType) => state.counterer)
+    } = useSelector((state: AppRootStateType) => state.counter)
 
 
     const changeMax = (event: ChangeEvent<HTMLInputElement>) => {

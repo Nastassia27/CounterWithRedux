@@ -33,7 +33,7 @@ export const MainWindow = () => {
         buttonClicked,
         previousMinValue,
         previousMaxValue,
-    } = useSelector((state: AppRootStateType) => state.counterer)
+    } = useSelector((state: AppRootStateType) => state.counter)
 
 
     const labelVariant = () => {
